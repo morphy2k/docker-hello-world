@@ -69,11 +69,9 @@ jobs:
           provenance: true
           push: true
 
-    #   - name: Generate artifact attestation
-    #     uses: actions/attest-build-provenance@v1
-    #     with:
-    #       subject-name: |
-    #         ${{ env.DOCKER_HUB_IMAGE }}
-    #         ${{ env.GHCR_IMAGE }}
-    #       subject-digest: ${{ steps.push.outputs.digest }}
-    #       push-to-registry: true
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.GHCR_IMAGE }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
